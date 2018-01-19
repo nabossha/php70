@@ -1,8 +1,8 @@
 FROM composer AS composer
-FROM php:7-apache
+FROM php:7.0-apache
 # FROM php:7.2-apache
 # 02
-MAINTAINER Nando Bosshart <nando@bosshartong.ch>
+MAINTAINER Nando Bosshart <nando@webstobe.ch>
 #03 set ENV variables
 ENV APACHE_DOCUMENT_ROOT="/var/www/web" COMPOSER_ALLOW_SUPERUSER=1 COMPOSER_HOME=tmp PATH="/tmp/vendor/bin:/var/www/vendor/bin:$PATH"
 
