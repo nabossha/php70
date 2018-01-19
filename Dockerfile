@@ -2,9 +2,9 @@ FROM composer AS composer
 FROM php:7.0-apache
 # FROM php:7.2-apache
 # 02
-MAINTAINER Nando Bosshart <nando@webstobe.ch>
+MAINTAINER Nando Bosshart <nando@bosshartong.ch>
 #03 set ENV variables
-ENV APACHE_DOCUMENT_ROOT="/var/www/web" COMPOSER_ALLOW_SUPERUSER=1 COMPOSER_HOME=tmp PATH="/tmp/vendor/bin:/var/www/vendor/bin:$PATH"
+ENV APACHE_DOCUMENT_ROOT="/var/www/web" COMPOSER_ALLOW_SUPERUSER=1 PATH="/var/www/vendor/bin:$PATH"
 
 # 04 set desired timezone
 RUN echo Europe/Zurich >/etc/timezone && \
