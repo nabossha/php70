@@ -28,7 +28,7 @@ RUN echo "deb http://deb.debian.org/debian stretch main" > /etc/apt/sources.list
 RUN apt-get install -y \
         libxml2-dev libfreetype6-dev \
         libjpeg62-turbo-dev \
-        libpng12-dev \
+        libpng-dev \
         rsync \
         zlib1g-dev \
         graphicsmagick \
@@ -41,7 +41,7 @@ RUN apt-get install -y \
     apt-get -y purge \
         libxml2-dev libfreetype6-dev \
         libjpeg62-turbo-dev \
-        libpng12-dev \
+        libpng-dev \
         zlib1g-dev && \
     rm -rf /var/lib/apt/lists/* /usr/src/*
 # 08 configure Apache
