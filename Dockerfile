@@ -13,7 +13,7 @@ dpkg-reconfigure -f noninteractive tzdata
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf && \
     sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# 06 install some additions on top of our image
+# 06 install some tools on top of our image
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         wget \
@@ -21,16 +21,17 @@ RUN apt-get update && \
         vim \
         git \
         unzip \
-        zip
-# 07 Install required 3rd party tools
+        zip \
+        rsync \
+        graphicsmagick \
+        mysql-client
+# 07 libraries for compiling:
 RUN apt-get install -y \
-        libxml2-dev libfreetype6-dev \
+        libxml2-dev \
+        libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
-        rsync \
-        zlib1g-dev \
-        graphicsmagick \
-        mysql-client && \
+        zlib1g-dev && \
 # configure extensions
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
     docker-php-ext-install -j$(nproc) mysqli soap gd zip opcache && \
