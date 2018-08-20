@@ -4,7 +4,7 @@ FROM php:7.0-apache
 # 02
 MAINTAINER Nando Bosshart <nando@bosshartong.ch>
 #03 set ENV variables
-ENV APACHE_DOCUMENT_ROOT="/var/www/web" COMPOSER_ALLOW_SUPERUSER=1 PATH="/var/www/vendor/bin:$PATH"
+ENV APACHE_DOCUMENT_ROOT="/var/www/web" COMPOSER_ALLOW_SUPERUSER=1 COMPOSER_CACHE_DIR="/composer/cache" PATH="/var/www/vendor/bin:$PATH"
 
 # 04 set desired timezone
 RUN echo Europe/Zurich >/etc/timezone && \
@@ -44,7 +44,7 @@ RUN apt-get install -y \
         zlib1g-dev && \
     rm -rf /var/lib/apt/lists/* /usr/src/*
 # 08 configure Apache
-RUN a2enmod rewrite
+RUN a2enmod rewrite ssl proxy proxy_http
 
 # 09 install composer globally - the ENV variables are already set:
 COPY --from=composer /usr/bin/composer /usr/bin/composer
